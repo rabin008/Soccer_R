@@ -13,8 +13,8 @@ epl_data_goals <- bind_rows(list(
   epl_data %>%
     select(team = AwayTeam, opponent = HomeTeam, goals = FTAG) %>%
     mutate(home = 0)
-  
-))
+)) %>% 
+  mutate(across(4, factor)) # convert columns to factors
 
 # Fitting the model (number of goals ~ home + team + opponent)
 poisson_model <- glm(goals ~ home + team + opponent, 
@@ -28,18 +28,18 @@ summary(poisson_model)
 
 # Based on the adjusted model, predict the expected number of goals Everton will score
 predict(poisson_model, 
-        data.frame(home=1, team="Everton", 
+        data.frame(home="1", team="Everton", 
                    opponent="Fulham"), type="response")
 
 # Based on the adjusted model, predict the expected number of goals Fulham will score
 predict(poisson_model, 
-        data.frame(home=0, team="Fulham", 
+        data.frame(home="0", team="Fulham", 
                    opponent="Everton"), type="response")
 
 # Now that we have calculated lambda, we can calculate probabilities of scoring goals
-dpois(0:10, predict(poisson_model, data.frame(home=1, team="Everton", 
+dpois(0:10, predict(poisson_model, data.frame(home="1", team="Everton", 
                     opponent="Fulham"), type="response")) 
-dpois(0:10, predict(poisson_model, data.frame(home=0, team="Fulham", 
+dpois(0:10, predict(poisson_model, data.frame(home="0", team="Fulham", 
                     opponent="Everton"), type="response"))
 
 
@@ -47,10 +47,10 @@ dpois(0:10, predict(poisson_model, data.frame(home=0, team="Fulham",
 simulate_match <- function(foot_model, homeTeam, awayTeam){
   
   home_goals_avg <- predict(foot_model,
-                            data.frame(home=1, team=homeTeam, 
+                            data.frame(home="1", team=homeTeam, 
                                        opponent=awayTeam), type="response")
   away_goals_avg <- predict(foot_model, 
-                            data.frame(home=0, team=awayTeam, 
+                            data.frame(home="0", team=awayTeam, 
                                        opponent=homeTeam), type="response")
   
   dpois(0:10, home_goals_avg) %o% dpois(0:10, away_goals_avg) # assuming independence
@@ -88,8 +88,8 @@ epl_data_corners <- bind_rows(list(
   epl_data %>%
     select(team = AwayTeam, opponent = HomeTeam, corners = AC) %>%
     mutate(home = 0)
-  
-))
+)) %>% 
+  mutate(across(4, factor)) # convert columns to factors
 
 # Fitting the model (number of corners ~ home + team + opponent)
 poisson_model <- glm(corners ~ home + team + opponent, 
@@ -103,29 +103,29 @@ summary(poisson_model)
 
 # Based on the adjusted model, predict the expected number of corners for Everton
 predict(poisson_model, 
-        data.frame(home=1, team="Everton", 
+        data.frame(home="1", team="Everton", 
                    opponent="Fulham"), type="response")
 
 # Based on the adjusted model, predict the expected number of goals for Fulham
 predict(poisson_model, 
-        data.frame(home=0, team="Fulham", 
+        data.frame(home="0", team="Fulham", 
                    opponent="Everton"), type="response")
 
 # Calculate probabilities for different outcomes 
-dpois(0:20, predict(poisson_model, data.frame(home=1, team="Everton", 
+dpois(0:20, predict(poisson_model, data.frame(home="1", team="Everton", 
                                               opponent="Fulham"), type="response")) 
 
-dpois(0:20, predict(poisson_model, data.frame(home=0, team="Fulham", 
+dpois(0:20, predict(poisson_model, data.frame(home="0", team="Fulham", 
                                               opponent="Everton"), type="response"))
 
 # Creating a function to wrap up the probabilities
 simulate_match <- function(foot_model, homeTeam, awayTeam, max){
   
   home_corners_avg <- predict(foot_model,
-                            data.frame(home=1, team=homeTeam, 
+                            data.frame(home="1", team=homeTeam, 
                                        opponent=awayTeam), type="response")
   away_corners_avg <- predict(foot_model, 
-                            data.frame(home=0, team=awayTeam, 
+                            data.frame(home="0", team=awayTeam, 
                                        opponent=homeTeam), type="response")
   
   dpois(0:max, home_corners_avg) %o% dpois(0:max, away_corners_avg) # assuming independence
