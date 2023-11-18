@@ -1,6 +1,7 @@
 #Packages
 library(dplyr)
 library(tidyr)
+library(ggplot2)
 
 # load data into data.frame (in this case we will be using PL 2022/23)
 epl_data <- read.csv(file.choose(),header=T)
@@ -41,3 +42,12 @@ predict(logistic_model,
 # We can see that Fulham have slightly higher chances of winning (35% vs 32%)
 # The final score was 0-1 to Fulham
 
+
+# Let's create a plot to visualize the fitted model
+ggplot(data=data.frame(epl_data_result, prob = logistic_model$fitted.values) %>%
+                arrange(prob) %>%
+                mutate(rank = 1:nrow(epl_data_result)), 
+       aes(x=rank, y=prob)) +
+  geom_point(aes(color=win), size=5) +
+  xlab("Sex") +
+  ylab("Predicted probability of getting heart disease")
