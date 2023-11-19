@@ -227,4 +227,4 @@ bind_rows(list(
   scale_color_manual(values=c("#CD5C5C", "#006400"),
                      name="Poisson")  +
   ggtitle("Number of Corners per Match (EPL 2022/23 Season)")  + xlab("Corners per Match") + ylab("Proportion of Matches") +
-  my_post_themew
+  my_post_theme
