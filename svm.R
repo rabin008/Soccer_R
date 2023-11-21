@@ -43,8 +43,14 @@ svm_model <- svm(FTR~., data=train, kernel = "linear")
 
 summary(svm_model) # Print summary of the model
 
+# let's create a confusion matrix for the train dataset
+train %>%
+  mutate(pred = predict(svm_model, train)) %>%
+  select(FTR, pred) %>%
+  table() 
+
 # let's create a confusion matrix for the test dataset
-confusion_matrix <- test %>%
+test %>%
   mutate(pred = predict(svm_model, test)) %>%
   select(FTR, pred) %>%
   table() 

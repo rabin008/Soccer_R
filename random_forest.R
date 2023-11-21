@@ -43,8 +43,14 @@ random_forest_model <- randomForest(FTR~., data=train, proximity=TRUE)
 
 random_forest_model # Out of the bag error is 46% so it is not a good model
 
+# let's create a confusion matrix for the train dataset
+train %>%
+  mutate(pred = predict(random_forest_model, train)) %>%
+  select(FTR, pred) %>%
+  table() 
+
 # let's create a confusion matrix for the test dataset
-test <- test %>%
+test %>%
   mutate(pred = predict(random_forest_model, test)) %>%
   select(FTR, pred) %>%
   table() 
