@@ -53,6 +53,4 @@ train %>%
 test %>%
   mutate(pred = predict(svm_model, test)) %>%
   select(FTR, pred) %>%
-  table() 
-
-# We can see that the model is not really good at predicting draws
+  table()

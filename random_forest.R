@@ -54,5 +54,3 @@ test %>%
   mutate(pred = predict(random_forest_model, test)) %>%
   select(FTR, pred) %>%
   table() 
-
-# We can see that the model is not really good at predicting draws
