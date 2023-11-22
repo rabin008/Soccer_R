@@ -14,11 +14,35 @@ final_dataset_with_odds: https://www.kaggle.com/datasets/louischen7/football-res
 
 ## Exploratory analysis
 
-Before even thinking about adjusting any model, let's try to create some simple graphs to get familiar with the datasets. All code relevant to these graphs can be found in the `explanatory_analysis.R` file.
+Before even thinking about adjusting any model, let's try to create some simple graphs to get familiar with the datasets. All code relevant to these graphs can be found in the `explanatory_analysis.R` file. The data considered for this section is from the 2022/23 season of the English Premier League.
 
-Check the mean goals scored per home team:
+### Goals analysis
 
-Check the mean goals scored per away team:
+Mean goals scored per home team:
+
+![Mean goals scored per home team](pictures/mean_goals_scored_per_home_team.png)
+
+Mean goals scored per away team:
+
+![Mean goals scored per away team](pictures/mean_goals_scored_per_away_team.png)
+
+Proportion of matches with different number of home goals:
+
+![Goals scored per home team](pictures/home_goals_per_match.png)
+
+Proportion of matches with different number of away goals:
+
+![Goals scored per away team](pictures/away_goals_per_match.png)
+
+### Corner analysis
+
+Proportion of matches with different number of corners:
+
+![Corners per home team](pictures/home_corners_per_match.png)
+
+Proportion of matches with different number of corners:
+
+![Corners per away team](pictures/away_corners_per_match.png)
 
 ## Models
 
