@@ -36,8 +36,8 @@ epl_data_goals %>%
   ggplot(aes(x=as.factor(home))) + 
   geom_bar(aes(y=actual, x=as.factor(home)),stat="identity",position="dodge", fill = "#20B2AA") +
   ggtitle("Mean goals scored per team (EPL 2022/23 Season)")  + 
-  xlab("Goals per Match") + 
-  ylab("Proportion of Matches") +
+  xlab("Team") + 
+  ylab("Goals per match") +
   my_post_theme
 
 # mean goals scored per home team
@@ -47,8 +47,8 @@ epl_data_goals %>%
   ggplot(aes(x=as.factor(home))) + 
   geom_bar(aes(y=actual, x=as.factor(home)),stat="identity",position="dodge", fill = "#FFA07A") +
   ggtitle("Mean goals scored per home team (EPL 2022/23 Season)")  + 
-  xlab("Goals per Match") + 
-  ylab("Proportion of Matches") +
+  xlab("Team") + 
+  ylab("Goals per Match") +
   my_post_theme
 
 # mean goals received as home team
@@ -58,8 +58,8 @@ epl_data_goals %>%
   ggplot(aes(x=as.factor(home))) + 
   geom_bar(aes(y=actual, x=as.factor(home)),stat="identity",position="dodge", fill = "#006400") +
   ggtitle("Mean goals received per home team (EPL 2022/23 Season)")  + 
-  xlab("Goals per Match") + 
-  ylab("Proportion of Matches") +
+  xlab("Team") + 
+  ylab("Goals per Match") +
   my_post_theme
 
 # mean goals scored per away team
@@ -69,8 +69,8 @@ epl_data_goals %>%
   ggplot(aes(x=as.factor(away))) + 
   geom_bar(aes(y=actual, x=as.factor(away)),stat="identity",position="dodge", fill = "#FFA07A") +
   ggtitle("Mean goals per away team (EPL 2022/23 Season)")  + 
-  xlab("Goals per Match") + 
-  ylab("Proportion of Matches") +
+  xlab("Team") + 
+  ylab("Goals per Match") +
   my_post_theme
 
 # mean goals received as away team
@@ -80,8 +80,8 @@ epl_data_goals %>%
   ggplot(aes(x=as.factor(away))) + 
   geom_bar(aes(y=actual, x=as.factor(away)),stat="identity",position="dodge", fill = "#006400") +
   ggtitle("Mean goals received per away team (EPL 2022/23 Season)")  + 
-  xlab("Goals per Match") + 
-  ylab("Proportion of Matches") +
+  xlab("Team") + 
+  ylab("Goals per match") +
   my_post_theme
 
 # actual observed results for home goals scored
