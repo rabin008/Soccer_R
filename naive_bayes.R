@@ -8,7 +8,7 @@ library(e1071)
 # load data into data.frame (in this case we will be using the final_dataset_with_odds.csv)
 final_data <- read.csv(file.choose(),header=T) 
 
-# let's just keep the last five matches form and bookies info
+# let's just keep the last three matches form and bookies info
 final_data_reduced <- final_data %>%
   select(
     id =X, home = HomeTeam, away = AwayTeam, homeGoals = FTHG, awayGoals = FTAG, # information about the actual match
