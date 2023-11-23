@@ -1,16 +1,16 @@
 # Predicting soccer outcomes with R
 
-This repo aims to provide practical examples of how some statistical models can be applied to predicting soccer outcomes. That being stated, this repo does not contain formal proof or evidence of why the models can be implemented or if they could be accurate at predicting said soccer outcomes.
+This repo aims to provide practical examples of how some statistical models can be applied to predict soccer outcomes. That being stated, this repo focuses on practice rather than theory. Therefore, it does not contain formal proof or evidence of why the models can be implemented or if they can be accurate at predicting soccer outcomes.
 
 ## Data sources
 
 The datasets were obtained from the following links:
 
-PL-2022-23: https://www.football-data.co.uk/englandm.php
+- [PL-2022-23](https://www.football-data.co.uk/englandm.php)
 
-Notes for Football Data: https://www.football-data.co.uk/notes.txt
+- [Notes for Football Data](https://www.football-data.co.uk/notes.txt)
 
-final_dataset_with_odds: https://www.kaggle.com/datasets/louischen7/football-results-and-betting-odds-data-of-epl/?select=final_dataset_with_odds.csv
+- [final_dataset_with_odds](https://www.kaggle.com/datasets/louischen7/football-results-and-betting-odds-data-of-epl/?select=final_dataset_with_odds.csv)
 
 ## Exploratory analysis
 
@@ -73,7 +73,7 @@ logistic_model <- glm(win ~ home + team + opponent,
                       family="binomial", data=epl_data_result)
 ```
 
-We can make predictions about a match Everton vs Fulham:
+We can make predictions about matches. For example, taking Everton vs Fulham:
 
 ```R
 predict(logistic_model,
@@ -115,7 +115,7 @@ poisson_model <- glm(goals ~ home + team + opponent,
                    family=poisson(link=log), data=epl_data_goals)
 ```
 
-We can make predictions about a match Everton vs Fulham:
+We can make predictions about matches. For example, taking Everton vs Fulham:
 
 ```R
 predict(poisson_model,
@@ -134,7 +134,7 @@ The same analysis is carried out for the number of corners and can be checked in
 
 ### Random Forest
 
-For this model, we will now consider the `final_dataset_with_odds.csv` file. Details about the code can be found in the `random_regression.R` file.
+For this model, we will now consider the `final_dataset_with_odds.csv` file. Details about the code can be found in the `random_forest.R` file.
 
 Let's show the head of the data that was used to build the model:
 
@@ -152,7 +152,7 @@ head(final_data_reduced)
 6  5 Man United  West Brom   M   M   M   M   M   M   M   M   M   M 1.200  5.00 12.000 1.2 5.0 10.0 1.200 5.00 11.00 1.20 5.0 11.00   W
 ```
 
-After splitting the data into a train and test set. we can fit the model:
+After splitting the data into a train and test set, we can fit the model:
 
 ```R
 random_forest_model <- randomForest(FTR~., data=train, proximity=TRUE)
@@ -195,7 +195,7 @@ head(final_data_reduced)
 6  5 Man United  West Brom   M   M   M   M   M   M   M   M   M   M 1.200  5.00 12.000 1.2 5.0 10.0 1.200 5.00 11.00 1.20 5.0 11.00   W
 ```
 
-After splitting the data into a train and test set. we can fit the model:
+After splitting the data into a train and test set, we can fit the model:
 
 ```R
 svm_model <- svm(FTR~., data=train, kernel = "linear")
@@ -238,7 +238,7 @@ head(final_data_reduced)
 6  5 Man United  West Brom   M   M   M   M   M   M 1.200  5.00 12.000 1.2 5.0 10.0 1.200 5.00 11.00 1.20 5.0 11.00   W
 ```
 
-After splitting the data into a train and test set. we can fit the model:
+After splitting the data into a train and test set, we can fit the model:
 
 ```R
 naive_bayes_model <- naiveBayes(FTR~., data=train)
@@ -281,7 +281,7 @@ head(final_data_reduced)
 6  5 Man United  West Brom 1.200  5.00 12.000 1.2 5.0 10.0 1.200 5.00 11.00 1.20 5.0 11.00   W
 ```
 
-After scaling and splitting the data into a train and test set. we can fit the model for different values of k. Taking k = 1:
+After scaling and splitting the data into a train and test set, we can fit the model for different values of k. Taking k = 1:
 
 ```R
 knn_model <- knn(train = train_scale,
