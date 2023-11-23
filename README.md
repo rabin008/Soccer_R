@@ -1,6 +1,6 @@
 # Predicting soccer outcomes with R
 
-This repo aims to provide practical examples of how some statistical models can be applied to predict soccer outcomes. That being stated, this repo focuses on practice rather than theory. Therefore, it does not contain formal proof or evidence of why the models can be implemented or if they can be accurate at predicting soccer outcomes.
+This repo aims to provide practical examples of how some statistical models can be applied to predict soccer outcomes. That being stated, this repo focuses on practice rather than theory. Therefore, it does not contain formal proof or evidence of why the models can be implemented or if they can be really accurate at predicting soccer outcomes.
 
 ## Data sources
 
@@ -86,7 +86,7 @@ predict(logistic_model,
 0.3184912
 ```
 
-In this case, we get the probability of Everton winning at home to Fulham.
+In this case, we get the probability of Everton winning at home vs Fulham.
 
 ### Poisson regression
 
@@ -304,7 +304,7 @@ table(test$FTR, knn_model)
   D 104 182  92
 ```
 
-Trying different values for k, we can see that the accuracy is maximized when k = 19 getting the following result:
+Trying different values for k, we can see that the accuracy is maximized when k = 19, getting the following confusion matrix:
 
 ```R
 knn_model <- knn(train = train_scale,
@@ -312,8 +312,6 @@ knn_model <- knn(train = train_scale,
                       cl = train$FTR,
                       k = 19)
 ```
-
-We can visualize the performance of the model via a confusion matrix:
 
 ```R
 table(test$FTR, knn_model)
